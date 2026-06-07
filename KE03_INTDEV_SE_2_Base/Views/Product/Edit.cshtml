@@ -1,0 +1,28 @@
+@model KE03_INTDEV_SE_2_Base.ViewModels.ProductFormViewModel
+
+@{
+    ViewData["Title"] = "Product bewerken";
+}
+
+<section class="admin-page admin-form-page">
+    <div class="admin-header">
+        <div>
+            <h1>Product bewerken</h1>
+            <p>Pas de productgegevens aan.</p>
+        </div>
+    </div>
+
+    <form asp-action="Edit" asp-route-id="@Model.Id" method="post" class="admin-form">
+        <input asp-for="Id" type="hidden" />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <partial name="_ProductForm" model="Model" />
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Opslaan</button>
+            <a asp-action="Index" class="btn btn-outline-secondary">Annuleren</a>
+        </div>
+    </form>
+</section>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

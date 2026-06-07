@@ -1,0 +1,100 @@
+@model KE03_INTDEV_SE_2_Base.ViewModels.ProductIndexViewModel
+
+@{
+    ViewData["Title"] = "Productbeheer";
+}
+
+<section class="admin-page">
+    <div class="admin-header">
+        <div>
+            <h1>Productbeheer</h1>
+            <p>Zoek, filter en beheer de producten van Matrix Inc.</p>
+        </div>
+        <a asp-action="Create" class="btn btn-primary">Nieuw product</a>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
+
+    <form asp-action="Index" method="get" class="filter-panel">
+        <div class="filter-field">
+            <label for="searchString">Productnaam</label>
+            <input id="searchString" name="searchString" value="@Model.SearchString" class="form-control" placeholder="Zoek op naam" />
+        </div>
+        <div class="filter-field">
+            <label for="category">Categorie</label>
+            <select id="category" name="category" class="form-select">
+                <option value="">Alle categorieen</option>
+                @foreach (var category in Model.Categories)
+                {
+                    <option value="@category" selected="@(string.Equals(Model.Category, category, StringComparison.OrdinalIgnoreCase))">@category</option>
+                }
+            </select>
+        </div>
+        <label class="form-check filter-check">
+            <input class="form-check-input" type="checkbox" name="lowStockOnly" value="true" @(Model.LowStockOnly ? "checked" : "") />
+            <span class="form-check-label">Alleen lage voorraad</span>
+        </label>
+        <div class="filter-actions">
+            <button type="submit" class="btn btn-primary">Filter</button>
+            <a asp-action="Index" class="btn btn-outline-secondary">Reset</a>
+        </div>
+    </form>
+
+    <div class="summary-row">
+        <span>@Model.Products.Count() resultaat/resultaten</span>
+        <span>@Model.LowStockProducts van @Model.TotalProducts producten hebben lage voorraad</span>
+    </div>
+
+    @if (!Model.Products.Any())
+    {
+        <div class="alert alert-info">Er zijn geen producten gevonden.</div>
+    }
+    else
+    {
+        <div class="table-responsive admin-table-wrap">
+            <table class="table table-striped table-hover align-middle admin-table">
+                <thead>
+                    <tr>
+                        <th>Naam</th>
+                        <th>Categorie</th>
+                        <th>Omschrijving</th>
+                        <th>Prijs</th>
+                        <th>Voorraad</th>
+                        <th>Onderdelen</th>
+                        <th class="text-end">Acties</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var product in Model.Products)
+                    {
+                        <tr>
+                            <td>@product.Name</td>
+                            <td><span class="badge bg-secondary">@product.Category</span></td>
+                            <td>@product.Description</td>
+                            <td>@product.Price.ToString("C")</td>
+                            <td>
+                                @if (product.Stock < 5)
+                                {
+                                    <span class="badge bg-warning text-dark">@product.Stock laag</span>
+                                }
+                                else
+                                {
+                                    <span>@product.Stock</span>
+                                }
+                            </td>
+                            <td>@product.Parts.Count</td>
+                            <td class="text-end action-links">
+                                <a asp-action="Details" asp-route-id="@product.Id" class="btn btn-sm btn-outline-secondary">Details</a>
+                                <a asp-action="Edit" asp-route-id="@product.Id" class="btn btn-sm btn-outline-primary">Bewerken</a>
+                                <a asp-action="Delete" asp-route-id="@product.Id" class="btn btn-sm btn-outline-danger">Verwijderen</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</section>

@@ -1,0 +1,70 @@
+{
+  "name": "Matrix Inc Back-office UI",
+  "colors": {
+    "ink": "#0B2545",
+    "heading": "#1F4D78",
+    "primary": "#2E74B5",
+    "primary_dark": "#1F5E93",
+    "success": "#198754",
+    "warning": "#FFD76A",
+    "danger": "#DC3545",
+    "muted": "#5F6B7A",
+    "border": "#D9E0E8",
+    "surface": "#FFFFFF",
+    "surface_alt": "#F7F9FB",
+    "hero": "#EEF5FB",
+    "page": "#F4F7FA"
+  },
+  "typography": {
+    "fontFamily": "Inter, Segoe UI, Arial, sans-serif",
+    "h1": {
+      "size": 36,
+      "weight": 700,
+      "lineHeight": 44
+    },
+    "h2": {
+      "size": 24,
+      "weight": 700,
+      "lineHeight": 32
+    },
+    "h3": {
+      "size": 18,
+      "weight": 700,
+      "lineHeight": 26
+    },
+    "body": {
+      "size": 16,
+      "weight": 400,
+      "lineHeight": 24
+    },
+    "small": {
+      "size": 13,
+      "weight": 500,
+      "lineHeight": 18
+    }
+  },
+  "spacing": {
+    "xs": 4,
+    "sm": 8,
+    "md": 16,
+    "lg": 24,
+    "xl": 32,
+    "xxl": 48
+  },
+  "radius": {
+    "sm": 6,
+    "md": 8
+  },
+  "breakpoints": {
+    "mobile": 375,
+    "tablet": 768,
+    "desktop": 1366
+  },
+  "hciPrinciples": [
+    "Duidelijke navigatie vanaf de homepagina.",
+    "Primaire acties zijn visueel sterker dan secundaire acties.",
+    "Tabellen zijn scanbaar door kolomkoppen, badges en consistente actieknoppen.",
+    "Verwijderen gebeurt via een aparte bevestigingsstap.",
+    "Filters staan boven het overzicht en behouden de taakcontext."
+  ]
+}

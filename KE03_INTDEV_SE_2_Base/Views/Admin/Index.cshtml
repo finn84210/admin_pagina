@@ -1,0 +1,100 @@
+@model KE03_INTDEV_SE_2_Base.ViewModels.AdminDashboardViewModel
+
+@{
+    ViewData["Title"] = "Admin dashboard";
+}
+
+<section class="admin-page">
+    <div class="admin-header">
+        <div>
+            <h1>Admin dashboard</h1>
+            <p>Beheer producten en houd voorraad snel in de gaten.</p>
+        </div>
+        <div class="admin-actions">
+            <a asp-controller="Product" asp-action="Index" class="btn btn-primary">Producten bekijken</a>
+            <a asp-controller="Product" asp-action="Create" class="btn btn-outline-primary">Nieuw product</a>
+            <a asp-controller="Orders" asp-action="Active" class="btn btn-outline-secondary">Actieve orders</a>
+        </div>
+    </div>
+
+    <div class="dashboard-grid">
+        <article class="dashboard-card">
+            <span class="dashboard-label">Totaal producten</span>
+            <strong>@Model.TotalProducts</strong>
+        </article>
+        <article class="dashboard-card dashboard-card-warning">
+            <span class="dashboard-label">Lage voorraad</span>
+            <strong>@Model.LowStockProducts</strong>
+        </article>
+        <article class="dashboard-card">
+            <span class="dashboard-label">Actieve orders</span>
+            <strong>@Model.ActiveOrders</strong>
+        </article>
+        <article class="dashboard-card">
+            <span class="dashboard-label">Extern binnengekomen</span>
+            <strong>@Model.IncomingOrders</strong>
+        </article>
+        <article class="dashboard-card dashboard-card-warning">
+            <span class="dashboard-label">Met bezorger</span>
+            <strong>@Model.OrdersWithDeliveryPerson</strong>
+        </article>
+    </div>
+
+    <section class="admin-overview-section">
+        <div class="admin-section-header">
+            <div>
+                <h2>Overzicht actieve orders</h2>
+                <p>Laatste actieve orders die nog verwerkt of bezorgd moeten worden.</p>
+            </div>
+            <a asp-controller="Orders" asp-action="Active" class="btn btn-sm btn-outline-primary">Alles bekijken</a>
+        </div>
+
+        @if (!Model.RecentActiveOrders.Any())
+        {
+            <div class="alert alert-info">Er zijn geen actieve orders.</div>
+        }
+        else
+        {
+            <div class="table-responsive admin-table-wrap">
+                <table class="table table-striped table-hover align-middle admin-table">
+                    <thead>
+                        <tr>
+                            <th>Order</th>
+                            <th>Klant</th>
+                            <th>Status</th>
+                            <th>Bron</th>
+                            <th>Bezorger</th>
+                            <th>Producten</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var order in Model.RecentActiveOrders)
+                        {
+                            <tr>
+                                <td>#@order.Id</td>
+                                <td>@order.Customer.Name</td>
+                                <td>
+                                    <span class="badge @(order.Status == "Doorgegeven aan bezorger" ? "bg-success" : "bg-primary")">
+                                        @order.Status
+                                    </span>
+                                </td>
+                                <td>@order.Source</td>
+                                <td>@(string.IsNullOrWhiteSpace(order.DeliveryPerson) ? "Nog niet toegewezen" : order.DeliveryPerson)</td>
+                                <td>
+                                    @if (order.Products.Any())
+                                    {
+                                        @string.Join(", ", order.Products.Select(product => product.Name))
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">Geen producten gekoppeld</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </section>
+</section>

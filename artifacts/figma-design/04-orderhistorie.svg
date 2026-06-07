@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1462" height="982" viewBox="0 0 1462 982">
+<rect x="0" y="0" width="1462" height="982" rx="0" fill="#EEF2F6" />
+<text x="48" y="32" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="800" fill="#0B2545" text-anchor="start">04 Orderhistorie</text>
+<text x="48" y="54" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#5F6B7A" text-anchor="start">Filteren op klant, datum en zoekterm</text>
+<rect x="48" y="72" width="1366" height="900" rx="8" fill="#F4F7FA" stroke="#D9E0E8" stroke-width="1" />
+<rect x="48" y="72" width="1366" height="64" rx="0" fill="#FFFFFF" stroke="#D9E0E8" stroke-width="1" />
+<text x="80" y="111" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#0B2545" text-anchor="start">Matrix Inc.</text>
+<text x="253" y="110" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="500" fill="#5F6B7A" text-anchor="start">Home</text>
+<text x="337" y="110" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="500" fill="#5F6B7A" text-anchor="start">Customers</text>
+<text x="471" y="110" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="500" fill="#5F6B7A" text-anchor="start">Admin</text>
+<text x="565" y="110" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="500" fill="#5F6B7A" text-anchor="start">Products</text>
+<text x="689" y="110" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="500" fill="#5F6B7A" text-anchor="start">Privacy</text>
+<rect x="793" y="87" width="84" height="34" rx="6" fill="#EEF5FB" />
+<text x="803" y="110" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#1F4D78" text-anchor="start">Orders</text>
+<text x="96" y="198" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#0B2545" text-anchor="start">Orderhistorie</text>
+<text x="96" y="230" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#5F6B7A" text-anchor="start">Alle orders van alle klanten in een overzicht.</text>
+<rect x="1118" y="178" width="166" height="34" rx="17" fill="#6C757D" />
+<text x="1201" y="200" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="800" fill="#FFFFFF" text-anchor="middle">4 orders</text>
+<rect x="96" y="266" width="1188" height="100" rx="8" fill="#F7F9FB" stroke="#D9E0E8" stroke-width="1" />
+<text x="124" y="304" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#0B2545" text-anchor="start">Klant</text>
+<rect x="124" y="318" width="210" height="38" rx="6" fill="#FFFFFF" stroke="#D9E0E8" stroke-width="1" />
+<text x="142" y="343" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#5F6B7A" text-anchor="start">Alle klanten</text>
+<text x="360" y="304" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#0B2545" text-anchor="start">Zoeken</text>
+<rect x="360" y="318" width="260" height="38" rx="6" fill="#FFFFFF" stroke="#D9E0E8" stroke-width="1" />
+<text x="378" y="343" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#5F6B7A" text-anchor="start">Ordernr, klant of adres</text>
+<text x="646" y="304" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#0B2545" text-anchor="start">Vanaf</text>
+<rect x="646" y="318" width="150" height="38" rx="6" fill="#FFFFFF" stroke="#D9E0E8" stroke-width="1" />
+<text x="820" y="304" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#0B2545" text-anchor="start">Tot en met</text>
+<rect x="820" y="318" width="150" height="38" rx="6" fill="#FFFFFF" stroke="#D9E0E8" stroke-width="1" />
+<rect x="1010" y="314" width="92" height="42" rx="6" fill="#2E74B5" />
+<text x="1056.0" y="341" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">Filter</text>
+<rect x="1114" y="314" width="90" height="42" rx="6" fill="#FFFFFF" stroke="#D9E0E8" stroke-width="1" />
+<text x="1159.0" y="341" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#1F4D78" text-anchor="middle">Reset</text>
+<rect x="96" y="414" width="1188" height="360" rx="8" fill="#FFFFFF" stroke="#D9E0E8" stroke-width="1" />
+<rect x="96" y="414" width="1188" height="50" rx="8" fill="#EEF5FB" />
+<text x="116" y="446" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#1F4D78" text-anchor="start">Ordernummer</text>
+<text x="286" y="446" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#1F4D78" text-anchor="start">Orderdatum</text>
+<text x="456" y="446" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#1F4D78" text-anchor="start">Klant</text>
+<text x="636" y="446" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#1F4D78" text-anchor="start">Adres</text>
+<text x="896" y="446" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#1F4D78" text-anchor="start">Status</text>
+<text x="1046" y="446" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#1F4D78" text-anchor="start">Producten</text>
+<line x1="96" y1="464" x2="1284" y2="464" stroke="#D9E0E8" stroke-width="1"/>
+<text x="116" y="506" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#0B2545" text-anchor="start">#4</text>
+<text x="286" y="506" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#5F6B7A" text-anchor="start">01-03-2021</text>
+<text x="456" y="506" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#0B2545" text-anchor="start">Trinity</text>
+<text x="636" y="506" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#5F6B7A" text-anchor="start">789 Pine St</text>
+<rect x="894" y="484" width="70" height="28" rx="14" fill="#198754" />
+<text x="929" y="503" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle">Actief</text>
+<text x="1046" y="506" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#5F6B7A" text-anchor="start">Geen producten gekoppeld</text>
+<line x1="96" y1="534" x2="1284" y2="534" stroke="#D9E0E8" stroke-width="1"/>
+<text x="116" y="576" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#0B2545" text-anchor="start">#3</text>
+<text x="286" y="576" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#5F6B7A" text-anchor="start">01-02-2021</text>
+<text x="456" y="576" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#0B2545" text-anchor="start">Morpheus</text>
+<text x="636" y="576" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#5F6B7A" text-anchor="start">456 Oak St</text>
+<rect x="894" y="554" width="70" height="28" rx="14" fill="#198754" />
+<text x="929" y="573" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle">Actief</text>
+<text x="1046" y="576" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#5F6B7A" text-anchor="start">Geen producten gekoppeld</text>
+<line x1="96" y1="604" x2="1284" y2="604" stroke="#D9E0E8" stroke-width="1"/>
+<text x="116" y="646" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#0B2545" text-anchor="start">#2</text>
+<text x="286" y="646" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#5F6B7A" text-anchor="start">01-02-2021</text>
+<text x="456" y="646" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#0B2545" text-anchor="start">Neo</text>
+<text x="636" y="646" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#5F6B7A" text-anchor="start">123 Elm St</text>
+<rect x="894" y="624" width="70" height="28" rx="14" fill="#198754" />
+<text x="929" y="643" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle">Actief</text>
+<text x="1046" y="646" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#5F6B7A" text-anchor="start">Geen producten gekoppeld</text>
+<line x1="96" y1="674" x2="1284" y2="674" stroke="#D9E0E8" stroke-width="1"/>
+<text x="116" y="716" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#0B2545" text-anchor="start">#1</text>
+<text x="286" y="716" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#5F6B7A" text-anchor="start">01-01-2021</text>
+<text x="456" y="716" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#0B2545" text-anchor="start">Neo</text>
+<text x="636" y="716" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#5F6B7A" text-anchor="start">123 Elm St</text>
+<rect x="894" y="694" width="70" height="28" rx="14" fill="#198754" />
+<text x="929" y="713" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle">Actief</text>
+<text x="1046" y="716" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#5F6B7A" text-anchor="start">Geen producten gekoppeld</text>
+</svg>

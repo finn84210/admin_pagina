@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1462" height="982" viewBox="0 0 1462 982">
+<rect x="0" y="0" width="1462" height="982" rx="0" fill="#EEF2F6" />
+<text x="48" y="32" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="800" fill="#0B2545" text-anchor="start">05 Componenten en tokens</text>
+<text x="48" y="54" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#5F6B7A" text-anchor="start">Basis voor Figma componenten</text>
+<rect x="48" y="72" width="1366" height="620" rx="8" fill="#F4F7FA" stroke="#D9E0E8" stroke-width="1" />
+<text x="96" y="148" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#0B2545" text-anchor="start">Design system basis</text>
+<text x="96" y="184" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#5F6B7A" text-anchor="start">Kleuren, typografie, knoppen, kaarten, filters en tabelpatronen.</text>
+<text x="96" y="242" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="800" fill="#0B2545" text-anchor="start">Kleuren</text>
+<rect x="96" y="268" width="96" height="64" rx="8" fill="#0B2545" stroke="#D9E0E8" stroke-width="1" />
+<text x="96" y="358" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#0B2545" text-anchor="start">Ink</text>
+<text x="96" y="378" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="500" fill="#5F6B7A" text-anchor="start">#0B2545</text>
+<rect x="228" y="268" width="96" height="64" rx="8" fill="#2E74B5" stroke="#D9E0E8" stroke-width="1" />
+<text x="228" y="358" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#0B2545" text-anchor="start">Primary</text>
+<text x="228" y="378" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="500" fill="#5F6B7A" text-anchor="start">#2E74B5</text>
+<rect x="360" y="268" width="96" height="64" rx="8" fill="#198754" stroke="#D9E0E8" stroke-width="1" />
+<text x="360" y="358" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#0B2545" text-anchor="start">Success</text>
+<text x="360" y="378" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="500" fill="#5F6B7A" text-anchor="start">#198754</text>
+<rect x="492" y="268" width="96" height="64" rx="8" fill="#FFD76A" stroke="#D9E0E8" stroke-width="1" />
+<text x="492" y="358" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#0B2545" text-anchor="start">Warning</text>
+<text x="492" y="378" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="500" fill="#5F6B7A" text-anchor="start">#FFD76A</text>
+<rect x="624" y="268" width="96" height="64" rx="8" fill="#DC3545" stroke="#D9E0E8" stroke-width="1" />
+<text x="624" y="358" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#0B2545" text-anchor="start">Danger</text>
+<text x="624" y="378" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="500" fill="#5F6B7A" text-anchor="start">#DC3545</text>
+<rect x="756" y="268" width="96" height="64" rx="8" fill="#F7F9FB" stroke="#D9E0E8" stroke-width="1" />
+<text x="756" y="358" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#0B2545" text-anchor="start">Surface</text>
+<text x="756" y="378" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="500" fill="#5F6B7A" text-anchor="start">#F7F9FB</text>
+<text x="96" y="442" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="800" fill="#0B2545" text-anchor="start">Knoppen</text>
+<rect x="96" y="468" width="118" height="42" rx="6" fill="#2E74B5" />
+<text x="155.0" y="495" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">Primair</text>
+<rect x="230" y="468" width="128" height="42" rx="6" fill="#FFFFFF" stroke="#D9E0E8" stroke-width="1" />
+<text x="294.0" y="495" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#1F4D78" text-anchor="middle">Secundair</text>
+<rect x="374" y="468" width="112" height="42" rx="6" fill="#198754" />
+<text x="430.0" y="495" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">Opslaan</text>
+<rect x="502" y="468" width="138" height="42" rx="6" fill="#DC3545" />
+<text x="571.0" y="495" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">Verwijderen</text>
+<text x="768" y="442" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="800" fill="#0B2545" text-anchor="start">Formulier veld</text>
+<text x="768" y="486" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#0B2545" text-anchor="start">Productnaam</text>
+<rect x="768" y="500" width="360" height="42" rx="6" fill="#FFFFFF" stroke="#D9E0E8" stroke-width="1" />
+<text x="788" y="527" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="500" fill="#0B2545" text-anchor="start">Nebuchadnezzar</text>
+<text x="768" y="574" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="#DC3545" text-anchor="start">Foutmelding: Productnaam is verplicht.</text>
+</svg>

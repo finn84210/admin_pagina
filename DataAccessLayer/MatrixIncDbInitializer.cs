@@ -1,9 +1,6 @@
-﻿using DataAccessLayer.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DataAccessLayer.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 namespace DataAccessLayer
 {
@@ -11,6 +8,10 @@ namespace DataAccessLayer
     {
         public static void Initialize(MatrixIncDbContext context)
         {
+            EnsureProductStockColumn(context);
+            EnsureOrderWorkflowColumns(context);
+            NormalizeSeedProductCategories(context);
+
             // Look for any customers.
             if (context.Customers.Any())
             {
@@ -20,7 +21,7 @@ namespace DataAccessLayer
             // TODO: Hier moet ik nog wat namen verzinnen die betrekking hebben op de matrix.
             // - Denk aan de m3 boutjes, moertjes en ringetjes.
             // - Denk aan namen van schepen
-            // - Denk aan namen van vliegtuigen            
+            // - Denk aan namen van vliegtuigen
             var customers = new Customer[]
             {
                 new Customer { Name = "Neo", Address = "123 Elm St" , Active=true},
@@ -31,18 +32,18 @@ namespace DataAccessLayer
 
             var orders = new Order[]
             {
-                new Order { Customer = customers[0], OrderDate = DateTime.Parse("2021-01-01")},
-                new Order { Customer = customers[0], OrderDate = DateTime.Parse("2021-02-01")},
-                new Order { Customer = customers[1], OrderDate = DateTime.Parse("2021-02-01")},
-                new Order { Customer = customers[2], OrderDate = DateTime.Parse("2021-03-01")}
-            };  
+                new Order { Customer = customers[0], OrderDate = DateTime.Parse("2021-01-01"), Status = "Afgerond"},
+                new Order { Customer = customers[0], OrderDate = DateTime.Parse("2021-02-01"), Status = "Nieuw", Source = "Externe website", ExternalReference = "WEB-1002"},
+                new Order { Customer = customers[1], OrderDate = DateTime.Parse("2021-02-01"), Status = "In behandeling"},
+                new Order { Customer = customers[2], OrderDate = DateTime.Parse("2021-03-01"), Status = "Doorgegeven aan bezorger", DeliveryPerson = "Switch", SentToDeliveryAt = DateTime.Parse("2021-03-01 10:30")}
+            };
             context.Orders.AddRange(orders);
 
             var products = new Product[]
             {
-                new Product { Name = "Nebuchadnezzar", Description = "Het schip waarop Neo voor het eerst de echte wereld leert kennen", Price = 10000.00m },
-                new Product { Name = "Jack-in Chair", Description = "Stoel met een rugsteun en metalen armen waarin mensen zitten om ingeplugd te worden in de Matrix via een kabel in de nekpoort", Price = 500.50m },
-                new Product { Name = "EMP (Electro-Magnetic Pulse) Device", Description = "Wapentuig op de schepen van Zion", Price = 129.99m }
+                new Product { Name = "Nebuchadnezzar", Description = "Het schip waarop Neo voor het eerst de echte wereld leert kennen", Category = "Schepen", Price = 10000.00m, Stock = 3 },
+                new Product { Name = "Jack-in Chair", Description = "Stoel met een rugsteun en metalen armen waarin mensen zitten om ingeplugd te worden in de Matrix via een kabel in de nekpoort", Category = "Hardware", Price = 500.50m, Stock = 12 },
+                new Product { Name = "EMP (Electro-Magnetic Pulse) Device", Description = "Wapentuig op de schepen van Zion", Category = "Verdediging", Price = 129.99m, Stock = 4 }
             };
             context.Products.AddRange(products);
 
@@ -58,6 +59,112 @@ namespace DataAccessLayer
             context.SaveChanges();
 
             context.Database.EnsureCreated();
+        }
+
+        private static void EnsureProductStockColumn(MatrixIncDbContext context)
+        {
+            var connection = context.Database.GetDbConnection();
+            var shouldCloseConnection = connection.State == ConnectionState.Closed;
+
+            if (shouldCloseConnection)
+            {
+                connection.Open();
+            }
+
+            try
+            {
+                using var command = connection.CreateCommand();
+                command.CommandText = "PRAGMA table_info('Products')";
+
+                var hasStockColumn = false;
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        if (string.Equals(reader["name"]?.ToString(), "Stock", StringComparison.OrdinalIgnoreCase))
+                        {
+                            hasStockColumn = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (!hasStockColumn)
+                {
+                    context.Database.ExecuteSqlRaw("ALTER TABLE Products ADD COLUMN Stock INTEGER NOT NULL DEFAULT 0");
+                }
+            }
+            finally
+            {
+                if (shouldCloseConnection)
+                {
+                    connection.Close();
+                }
+            }
+
+            EnsureColumn(context, "Products", "Category", "TEXT NOT NULL DEFAULT 'Algemeen'");
+        }
+
+        private static void EnsureOrderWorkflowColumns(MatrixIncDbContext context)
+        {
+            EnsureColumn(context, "Orders", "Status", "TEXT NOT NULL DEFAULT 'Nieuw'");
+            EnsureColumn(context, "Orders", "Source", "TEXT NOT NULL DEFAULT 'Back-office'");
+            EnsureColumn(context, "Orders", "ExternalReference", "TEXT NULL");
+            EnsureColumn(context, "Orders", "DeliveryPerson", "TEXT NULL");
+            EnsureColumn(context, "Orders", "SentToDeliveryAt", "TEXT NULL");
+        }
+
+        private static void NormalizeSeedProductCategories(MatrixIncDbContext context)
+        {
+            context.Database.ExecuteSqlRaw("UPDATE Products SET Category = 'Schepen' WHERE Name = 'Nebuchadnezzar' AND Category = 'Algemeen'");
+            context.Database.ExecuteSqlRaw("UPDATE Products SET Category = 'Hardware' WHERE Name = 'Jack-in Chair' AND Category = 'Algemeen'");
+            context.Database.ExecuteSqlRaw("UPDATE Products SET Category = 'Verdediging' WHERE Name = 'EMP (Electro-Magnetic Pulse) Device' AND Category = 'Algemeen'");
+        }
+
+        private static void EnsureColumn(MatrixIncDbContext context, string tableName, string columnName, string definition)
+        {
+            var connection = context.Database.GetDbConnection();
+            var shouldCloseConnection = connection.State == ConnectionState.Closed;
+
+            if (shouldCloseConnection)
+            {
+                connection.Open();
+            }
+
+            try
+            {
+                using var command = connection.CreateCommand();
+                command.CommandText = $"PRAGMA table_info('{tableName}')";
+
+                var hasColumn = false;
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        if (string.Equals(reader["name"]?.ToString(), columnName, StringComparison.OrdinalIgnoreCase))
+                        {
+                            hasColumn = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (!hasColumn)
+                {
+                    using var alterCommand = connection.CreateCommand();
+                    alterCommand.CommandText = $"ALTER TABLE {tableName} ADD COLUMN {columnName} {definition}";
+                    alterCommand.ExecuteNonQuery();
+                }
+            }
+            finally
+            {
+                if (shouldCloseConnection)
+                {
+                    connection.Close();
+                }
+            }
         }
     }
 }

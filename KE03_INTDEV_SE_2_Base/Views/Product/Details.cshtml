@@ -1,0 +1,40 @@
+@model DataAccessLayer.Models.Product
+
+@{
+    ViewData["Title"] = "Productdetails";
+}
+
+<section class="admin-page">
+    <div class="admin-header">
+        <div>
+            <h1>@Model.Name</h1>
+            <p>Productdetails en gekoppelde onderdelen.</p>
+        </div>
+        <div class="admin-actions">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Bewerken</a>
+            <a asp-action="Index" class="btn btn-outline-secondary">Terug</a>
+        </div>
+    </div>
+
+    <dl class="details-list">
+        <dt>Omschrijving</dt>
+        <dd>@Model.Description</dd>
+        <dt>Categorie</dt>
+        <dd>@Model.Category</dd>
+        <dt>Prijs</dt>
+        <dd>@Model.Price.ToString("C")</dd>
+        <dt>Voorraad</dt>
+        <dd>@Model.Stock</dd>
+        <dt>Onderdelen</dt>
+        <dd>
+            @if (Model.Parts.Any())
+            {
+                @string.Join(", ", Model.Parts.Select(part => part.Name))
+            }
+            else
+            {
+                <span class="text-muted">Geen onderdelen gekoppeld</span>
+            }
+        </dd>
+    </dl>
+</section>

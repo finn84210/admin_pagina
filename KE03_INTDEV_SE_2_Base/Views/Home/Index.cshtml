@@ -1,28 +1,83 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@{
+    ViewData["Title"] = "Matrix Inc. Back-office";
 }
 
-<div class="alert-info">
-    <p class="p-1">
-        Dit project kun je gebruiken als startpunt voor de groeps inleveropdracht: <a href="https://moodle.zuyd.nl/mod/resource/view.php?id=1262065">KE03_INTDEV_SE_2</a>
+<section class="home-hero">
+    <div class="home-hero-content">
+        <span class="home-eyebrow">Matrix Inc. Admin</span>
+        <h1>Back-office overzicht</h1>
+        <p>
+            Beheer producten, bekijk orders en navigeer snel naar de belangrijkste
+            administratieve onderdelen van de applicatie.
+        </p>
+        <div class="home-actions">
+            <a asp-controller="Admin" asp-action="Index" class="btn btn-primary btn-lg">Open dashboard</a>
+            <a asp-controller="Product" asp-action="Index" class="btn btn-outline-primary btn-lg">Productbeheer</a>
+        </div>
+    </div>
+    <div class="home-status-panel" aria-label="Back-office functies">
+        <div>
+            <span>Producten</span>
+            <strong>CRUD</strong>
+        </div>
+        <div>
+            <span>Orders</span>
+            <strong>Actief & historie</strong>
+        </div>
+        <div>
+            <span>Voorraad</span>
+            <strong>Signalering</strong>
+        </div>
+    </div>
+</section>
 
-        <ul>
-            <li>Wat ga je maken: Je realiseert samen met je casus groep een webapplicatie, een “admin-achtige” webapplicatie waarbij je gebruik maakt van ASP.NET Core MVC architecture pattern. De belangrijkste hoofdprestatie en functionele eisen van deze applicatie zijn als volgt: Het back-office team van Matrix Inc. kan de producten en bijbehorende data en details beheren in deze webapplicatie, zodat de interne en externe klanten altijd over de juiste informatie beschikken.</li>
-            
-            <li>
-                Hoe ga je dit maken?<br />
-                - Groepsopdracht.<br />
-                - Pas de principes van HCI toe (bijv. Paper prototyping, design principles etc…)<br />
-                - Jullie web applicatie maakt gebruik van het MVC architectural pattern.<br />                
-                - Je werkt met je casusgroep op 1 github repository. Tip: je kunt met branches en pull requests werken<br />
-                - Jullie applicatie maakt gebruik van responsive design, meerdere html elementen en toegepast css styles.<br />
-                - Jullie applicatie maakt gebruik van de aangeleverde data access layer voor een snelle start. Deze mag je zelf uitbreiden of aanpassen indien gewenst.<br />
-            </li>
-            <li>
-                Je krijgt een dal (data access layer) meegeleverd. Qua inhoud is die niet perfect gevuld, maar qua structuur biedt die voldoende om een mooi bestel systeem te kunnen maken. <br />
-                In het voorbeeld wordt nog geen gebruik gemaakt van de repository classes, maar direct van de db context. Het is aan jezelf om aan te passen en te kiezen hoe je dit kunt wil toepassen en/of oplossen.<br />
-                Maar mis je iets, je bent vrij om alles naar wens aan te passen! Ben creatief!
-            </li>
-        </ul>
-    </p>
-</div>
+<section class="home-section">
+    <div class="home-section-heading">
+        <h2>Snel navigeren</h2>
+        <p>Kies direct de taak die je wilt uitvoeren.</p>
+    </div>
+
+    <div class="home-nav-grid">
+        <a asp-controller="Admin" asp-action="Index" class="home-nav-card">
+            <span class="home-card-kicker">Dashboard</span>
+            <strong>Admin overzicht</strong>
+            <p>Bekijk totaal aantal producten en producten met lage voorraad.</p>
+        </a>
+
+        <a asp-controller="Product" asp-action="Index" class="home-nav-card">
+            <span class="home-card-kicker">Producten</span>
+            <strong>Productbeheer</strong>
+            <p>Zoek, filter, voeg toe, bewerk of verwijder producten.</p>
+        </a>
+
+        <a asp-controller="Orders" asp-action="Index" class="home-nav-card">
+            <span class="home-card-kicker">Orders</span>
+            <strong>Orderhistorie</strong>
+            <p>Bekijk alle orders van klanten en filter op klant, datum of zoekterm.</p>
+        </a>
+
+        <a asp-controller="Orders" asp-action="Active" class="home-nav-card">
+            <span class="home-card-kicker">Logistiek</span>
+            <strong>Actieve orders</strong>
+            <p>Zet nieuwe en externe orders door naar een bezorger.</p>
+        </a>
+
+        <a asp-controller="Customers" asp-action="Index" class="home-nav-card">
+            <span class="home-card-kicker">Klanten</span>
+            <strong>Klantenbeheer</strong>
+            <p>Bekijk en beheer de klanten die in de back-office bekend zijn.</p>
+        </a>
+    </div>
+</section>
+
+<section class="home-section home-workflow">
+    <div>
+        <h2>Gebruikelijke workflow</h2>
+        <ol>
+            <li>Start op het admin dashboard voor een snelle statuscontrole.</li>
+            <li>Ga naar productbeheer om producten of voorraad bij te werken.</li>
+            <li>Controleer actieve orders en zet ze door naar een bezorger.</li>
+        </ol>
+    </div>
+    <a asp-controller="Product" asp-action="Create" class="btn btn-success">Nieuw product toevoegen</a>
+</section>

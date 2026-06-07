@@ -1,0 +1,39 @@
+@model KE03_INTDEV_SE_2_Base.ViewModels.ProductFormViewModel
+
+<div class="form-group mb-3">
+    <label asp-for="Name" class="form-label">Productnaam</label>
+    <input asp-for="Name" class="form-control" />
+    <span asp-validation-for="Name" class="text-danger"></span>
+</div>
+
+<div class="form-group mb-3">
+    <label asp-for="Description" class="form-label">Omschrijving</label>
+    <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+    <span asp-validation-for="Description" class="text-danger"></span>
+</div>
+
+<div class="form-group mb-3">
+    <label asp-for="Category" class="form-label">Categorie</label>
+    <input asp-for="Category" class="form-control" list="category-options" placeholder="Bijv. Schepen, Hardware, Verdediging" />
+    <datalist id="category-options">
+        <option value="Schepen"></option>
+        <option value="Hardware"></option>
+        <option value="Verdediging"></option>
+        <option value="Onderdelen"></option>
+        <option value="Accessoires"></option>
+    </datalist>
+    <span asp-validation-for="Category" class="text-danger"></span>
+</div>
+
+<div class="row">
+    <div class="col-md-6 mb-3">
+        <label asp-for="Price" class="form-label">Prijs</label>
+        <input asp-for="Price" class="form-control" type="number" step="0.01" min="0.01" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="col-md-6 mb-3">
+        <label asp-for="Stock" class="form-label">Voorraad</label>
+        <input asp-for="Stock" class="form-control" type="number" min="0" />
+        <span asp-validation-for="Stock" class="text-danger"></span>
+    </div>
+</div>

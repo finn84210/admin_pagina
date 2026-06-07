@@ -1,0 +1,121 @@
+@model KE03_INTDEV_SE_2_Base.ViewModels.ActiveOrdersViewModel
+
+@{
+    ViewData["Title"] = "Actieve orders";
+}
+
+<section class="admin-page">
+    <div class="admin-header">
+        <div>
+            <h1>Actieve orders</h1>
+            <p>Bekijk nieuwe orders, externe orders en orders die naar een bezorger moeten.</p>
+        </div>
+        <div class="admin-actions">
+            <a asp-action="Index" class="btn btn-outline-secondary">Orderhistorie</a>
+        </div>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+    }
+
+    <div class="dashboard-grid mb-4">
+        <article class="dashboard-card">
+            <span class="dashboard-label">Actieve orders</span>
+            <strong>@Model.TotalActiveOrders</strong>
+        </article>
+        <article class="dashboard-card">
+            <span class="dashboard-label">Binnengekomen extern</span>
+            <strong>@Model.IncomingOrders</strong>
+        </article>
+        <article class="dashboard-card dashboard-card-warning">
+            <span class="dashboard-label">Met bezorger</span>
+            <strong>@Model.OrdersWithDeliveryPerson</strong>
+        </article>
+    </div>
+
+    <form asp-action="Active" method="get" class="filter-panel active-order-filter">
+        <div class="filter-field">
+            <label for="statusFilter">Status</label>
+            <select id="statusFilter" name="statusFilter" class="form-select">
+                <option value="">Alle actieve statussen</option>
+                <option value="Nieuw" selected="@(Model.StatusFilter == "Nieuw")">Nieuw</option>
+                <option value="In behandeling" selected="@(Model.StatusFilter == "In behandeling")">In behandeling</option>
+                <option value="Doorgegeven aan bezorger" selected="@(Model.StatusFilter == "Doorgegeven aan bezorger")">Doorgegeven aan bezorger</option>
+            </select>
+        </div>
+        <div class="filter-actions">
+            <button type="submit" class="btn btn-primary">Filter</button>
+            <a asp-action="Active" class="btn btn-outline-secondary">Reset</a>
+        </div>
+    </form>
+
+    <div class="external-api-note">
+        <strong>Externe website endpoint</strong>
+        <code>POST /api/orders/incoming</code>
+        <span>JSON: customerName, customerAddress, externalReference en productIds.</span>
+    </div>
+
+    @if (!Model.Orders.Any())
+    {
+        <div class="alert alert-info">Er zijn geen actieve orders gevonden.</div>
+    }
+    else
+    {
+        <div class="active-orders-grid">
+            @foreach (var order in Model.Orders)
+            {
+                <article class="active-order-card">
+                    <div class="active-order-topline">
+                        <div>
+                            <span class="dashboard-label">Order</span>
+                            <h2>#@order.Id</h2>
+                        </div>
+                        <span class="badge @(order.Status == "Doorgegeven aan bezorger" ? "bg-success" : "bg-primary")">@order.Status</span>
+                    </div>
+
+                    <dl class="active-order-details">
+                        <dt>Klant</dt>
+                        <dd>@order.Customer.Name</dd>
+                        <dt>Adres</dt>
+                        <dd>@order.Customer.Address</dd>
+                        <dt>Datum</dt>
+                        <dd>@order.OrderDate.ToString("dd-MM-yyyy HH:mm")</dd>
+                        <dt>Bron</dt>
+                        <dd>@order.Source</dd>
+                        <dt>Referentie</dt>
+                        <dd>@(string.IsNullOrWhiteSpace(order.ExternalReference) ? "-" : order.ExternalReference)</dd>
+                        <dt>Producten</dt>
+                        <dd>
+                            @if (order.Products.Any())
+                            {
+                                @string.Join(", ", order.Products.Select(product => product.Name))
+                            }
+                            else
+                            {
+                                <span class="text-muted">Geen producten gekoppeld</span>
+                            }
+                        </dd>
+                        <dt>Bezorger</dt>
+                        <dd>@(string.IsNullOrWhiteSpace(order.DeliveryPerson) ? "Nog niet toegewezen" : order.DeliveryPerson)</dd>
+                    </dl>
+
+                    <form asp-action="AssignDelivery" method="post" class="delivery-form">
+                        <input type="hidden" name="OrderId" value="@order.Id" />
+                        <label for="delivery-@order.Id" class="form-label">Doorzetten naar bezorger</label>
+                        <div class="input-group">
+                            <input id="delivery-@order.Id" name="DeliveryPerson" class="form-control" value="@order.DeliveryPerson" placeholder="Naam bezorger" />
+                            <button type="submit" class="btn btn-primary">Doorzetten</button>
+                        </div>
+                    </form>
+                </article>
+            }
+        </div>
+    }
+</section>

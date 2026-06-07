@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1462" height="982" viewBox="0 0 1462 982">
+<rect x="0" y="0" width="1462" height="982" rx="0" fill="#EEF2F6" />
+<text x="48" y="32" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="800" fill="#0B2545" text-anchor="start">02 Admin dashboard</text>
+<text x="48" y="54" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#5F6B7A" text-anchor="start">Status en snelle acties</text>
+<rect x="48" y="72" width="1366" height="900" rx="8" fill="#F4F7FA" stroke="#D9E0E8" stroke-width="1" />
+<rect x="48" y="72" width="1366" height="64" rx="0" fill="#FFFFFF" stroke="#D9E0E8" stroke-width="1" />
+<text x="80" y="111" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#0B2545" text-anchor="start">Matrix Inc.</text>
+<text x="253" y="110" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="500" fill="#5F6B7A" text-anchor="start">Home</text>
+<text x="337" y="110" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="500" fill="#5F6B7A" text-anchor="start">Customers</text>
+<rect x="461" y="87" width="74" height="34" rx="6" fill="#EEF5FB" />
+<text x="471" y="110" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#1F4D78" text-anchor="start">Admin</text>
+<text x="565" y="110" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="500" fill="#5F6B7A" text-anchor="start">Products</text>
+<text x="689" y="110" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="500" fill="#5F6B7A" text-anchor="start">Privacy</text>
+<text x="803" y="110" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="500" fill="#5F6B7A" text-anchor="start">Orders</text>
+<text x="96" y="198" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#0B2545" text-anchor="start">Admin dashboard</text>
+<text x="96" y="230" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#5F6B7A" text-anchor="start">Beheer producten en houd voorraad snel in de gaten.</text>
+<rect x="1062" y="176" width="180" height="42" rx="6" fill="#2E74B5" />
+<text x="1152.0" y="203" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">Producten bekijken</text>
+<rect x="1256" y="176" width="130" height="42" rx="6" fill="#FFFFFF" stroke="#D9E0E8" stroke-width="1" />
+<text x="1321.0" y="203" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#1F4D78" text-anchor="middle">Nieuw product</text>
+<rect x="96" y="282" width="290" height="150" rx="8" fill="#FFFFFF" stroke="#D9E0E8" stroke-width="1" />
+<text x="122" y="330" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#5F6B7A" text-anchor="start">Totaal producten</text>
+<text x="122" y="392" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="52" font-weight="800" fill="#0B2545" text-anchor="start">3</text>
+<rect x="414" y="282" width="290" height="150" rx="8" fill="#FFF8E1" stroke="#D9E0E8" stroke-width="1" />
+<text x="440" y="330" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#5F6B7A" text-anchor="start">Lage voorraad</text>
+<text x="440" y="392" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="52" font-weight="800" fill="#0B2545" text-anchor="start">2</text>
+<rect x="96" y="482" width="1188" height="330" rx="8" fill="#FFFFFF" stroke="#D9E0E8" stroke-width="1" />
+<text x="124" y="534" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="800" fill="#0B2545" text-anchor="start">Beheertaken</text>
+<text x="124" y="576" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#1F4D78" text-anchor="start">1. Controleer lage voorraad</text>
+<text x="124" y="614" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#1F4D78" text-anchor="start">2. Werk productinformatie bij</text>
+<text x="124" y="652" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#1F4D78" text-anchor="start">3. Raadpleeg orders bij klantvragen</text>
+<rect x="768" y="528" width="430" height="210" rx="8" fill="#F7F9FB" stroke="#D9E0E8" stroke-width="1" />
+<text x="796" y="576" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="800" fill="#0B2545" text-anchor="start">HCI onderbouwing</text>
+<text x="796" y="620" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="400" fill="#5F6B7A" text-anchor="start">Het dashboard toont alleen de belangrijkste signalen.</text>
+<text x="796" y="654" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="400" fill="#5F6B7A" text-anchor="start">Actieknoppen sluiten aan op de meest voorkomende taken.</text>
+</svg>

@@ -1,0 +1,29 @@
+@model DataAccessLayer.Models.Product
+
+@{
+    ViewData["Title"] = "Product verwijderen";
+}
+
+<section class="admin-page admin-form-page">
+    <div class="delete-panel">
+        <h1>Product verwijderen</h1>
+        <p>Weet je zeker dat je dit product wilt verwijderen? Deze actie kan niet worden teruggedraaid.</p>
+
+        <dl class="details-list">
+            <dt>Naam</dt>
+            <dd>@Model.Name</dd>
+            <dt>Categorie</dt>
+            <dd>@Model.Category</dd>
+            <dt>Prijs</dt>
+            <dd>@Model.Price.ToString("C")</dd>
+            <dt>Voorraad</dt>
+            <dd>@Model.Stock</dd>
+        </dl>
+
+        <form asp-action="Delete" method="post" class="form-actions">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger">Definitief verwijderen</button>
+            <a asp-action="Index" class="btn btn-outline-secondary">Annuleren</a>
+        </form>
+    </div>
+</section>
