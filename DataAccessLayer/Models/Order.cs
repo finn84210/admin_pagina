@@ -23,6 +23,8 @@ namespace DataAccessLayer.Models
 
         public string? DeliveryPerson { get; set; }
 
+        public DateTime? PickedAt { get; set; }
+
         public DateTime? SentToDeliveryAt { get; set; }
 
         public int CustomerId { get; set; }

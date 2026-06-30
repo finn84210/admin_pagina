@@ -35,7 +35,7 @@ namespace DataAccessLayer
                 new Order { Customer = customers[0], OrderDate = DateTime.Parse("2021-01-01"), Status = "Afgerond"},
                 new Order { Customer = customers[0], OrderDate = DateTime.Parse("2021-02-01"), Status = "Nieuw", Source = "Externe website", ExternalReference = "WEB-1002"},
                 new Order { Customer = customers[1], OrderDate = DateTime.Parse("2021-02-01"), Status = "In behandeling"},
-                new Order { Customer = customers[2], OrderDate = DateTime.Parse("2021-03-01"), Status = "Doorgegeven aan bezorger", DeliveryPerson = "Switch", SentToDeliveryAt = DateTime.Parse("2021-03-01 10:30")}
+                new Order { Customer = customers[2], OrderDate = DateTime.Parse("2021-03-01"), Status = "Doorgegeven aan bezorger", DeliveryPerson = "Switch", PickedAt = DateTime.Parse("2021-03-01 10:15"), SentToDeliveryAt = DateTime.Parse("2021-03-01 10:30")}
             };
             context.Orders.AddRange(orders);
 
@@ -112,6 +112,7 @@ namespace DataAccessLayer
             EnsureColumn(context, "Orders", "Source", "TEXT NOT NULL DEFAULT 'Back-office'");
             EnsureColumn(context, "Orders", "ExternalReference", "TEXT NULL");
             EnsureColumn(context, "Orders", "DeliveryPerson", "TEXT NULL");
+            EnsureColumn(context, "Orders", "PickedAt", "TEXT NULL");
             EnsureColumn(context, "Orders", "SentToDeliveryAt", "TEXT NULL");
         }
 

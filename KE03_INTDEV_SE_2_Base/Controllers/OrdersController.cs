@@ -108,10 +108,39 @@ namespace KE03_INTDEV_SE_2_Base.Controllers
                 StatusFilter = statusFilter,
                 TotalActiveOrders = allActiveOrders.Count,
                 IncomingOrders = allActiveOrders.Count(order => order.Source == "Externe website"),
+                PickedOrders = allActiveOrders.Count(order => order.Status == "Gepickt"),
                 OrdersWithDeliveryPerson = allActiveOrders.Count(order => !string.IsNullOrWhiteSpace(order.DeliveryPerson))
             };
 
             return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Pick(int id)
+        {
+            var order = await _context.Orders.FindAsync(id);
+
+            if (order == null)
+            {
+                return NotFound();
+            }
+
+            if (order.Status == "Afgerond" || order.Status == "Geannuleerd")
+            {
+                TempData["ErrorMessage"] = $"Order #{order.Id} kan niet meer gepickt worden.";
+                return RedirectToAction(nameof(Active));
+            }
+
+            order.Status = "Gepickt";
+            order.PickedAt = DateTime.Now;
+            order.SentToDeliveryAt = DateTime.Now;
+            order.DeliveryPerson = null;
+
+            await _context.SaveChangesAsync();
+
+            TempData["SuccessMessage"] = $"Order #{order.Id} is gepickt en doorgestuurd naar de bezorgersapp.";
+            return RedirectToAction(nameof(Active));
         }
 
         [HttpPost]
@@ -139,6 +168,80 @@ namespace KE03_INTDEV_SE_2_Base.Controllers
 
             TempData["SuccessMessage"] = $"Order #{order.Id} is doorgegeven aan {order.DeliveryPerson}.";
             return RedirectToAction(nameof(Active));
+        }
+
+        [HttpGet]
+        [Route("api/delivery/orders")]
+        public async Task<IActionResult> DeliveryOrders()
+        {
+            var orders = await _context.Orders
+                .Include(order => order.Customer)
+                .Include(order => order.Products)
+                .Where(order => order.Status == "Gepickt" && string.IsNullOrWhiteSpace(order.DeliveryPerson))
+                .OrderBy(order => order.PickedAt)
+                .Select(order => new
+                {
+                    order.Id,
+                    order.OrderDate,
+                    order.Status,
+                    order.Source,
+                    order.ExternalReference,
+                    order.PickedAt,
+                    order.SentToDeliveryAt,
+                    Customer = new
+                    {
+                        order.Customer.Id,
+                        order.Customer.Name,
+                        order.Customer.Address
+                    },
+                    Products = order.Products.Select(product => new
+                    {
+                        product.Id,
+                        product.Name,
+                        product.Description,
+                        product.Category,
+                        product.Price
+                    })
+                })
+                .ToListAsync();
+
+            return Ok(orders);
+        }
+
+        [HttpPost]
+        [Route("api/delivery/orders/{id:int}/claim")]
+        public async Task<IActionResult> ClaimDeliveryOrder(int id, [FromBody] DeliveryClaimRequest? request)
+        {
+            if (request == null || !ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var order = await _context.Orders.FindAsync(id);
+
+            if (order == null)
+            {
+                return NotFound();
+            }
+
+            if (order.Status != "Gepickt")
+            {
+                return BadRequest(new { message = "Deze order staat niet klaar voor de bezorgersapp." });
+            }
+
+            order.DeliveryPerson = request.DeliveryPerson.Trim();
+            order.Status = "Doorgegeven aan bezorger";
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                order.Id,
+                order.Status,
+                order.DeliveryPerson,
+                order.PickedAt,
+                order.SentToDeliveryAt
+            });
         }
 
         [HttpPost]

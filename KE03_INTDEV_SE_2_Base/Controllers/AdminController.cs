@@ -35,6 +35,7 @@ namespace KE03_INTDEV_SE_2_Base.Controllers
                 LowStockProducts = products.Count(product => product.Stock < LowStockThreshold),
                 ActiveOrders = activeOrders.Count,
                 IncomingOrders = activeOrders.Count(order => order.Source == "Externe website"),
+                PickedOrders = activeOrders.Count(order => order.Status == "Gepickt"),
                 OrdersWithDeliveryPerson = activeOrders.Count(order => !string.IsNullOrWhiteSpace(order.DeliveryPerson)),
                 RecentActiveOrders = activeOrders.Take(5).ToList()
             };

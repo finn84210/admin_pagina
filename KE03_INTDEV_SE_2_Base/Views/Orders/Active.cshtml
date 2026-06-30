@@ -8,7 +8,7 @@
     <div class="admin-header">
         <div>
             <h1>Actieve orders</h1>
-            <p>Bekijk nieuwe orders, externe orders en orders die naar een bezorger moeten.</p>
+            <p>Bekijk nieuwe orders, pick ze en stuur ze door naar de bezorgersapp.</p>
         </div>
         <div class="admin-actions">
             <a asp-action="Index" class="btn btn-outline-secondary">Orderhistorie</a>
@@ -35,6 +35,10 @@
             <strong>@Model.IncomingOrders</strong>
         </article>
         <article class="dashboard-card dashboard-card-warning">
+            <span class="dashboard-label">Gepickt</span>
+            <strong>@Model.PickedOrders</strong>
+        </article>
+        <article class="dashboard-card">
             <span class="dashboard-label">Met bezorger</span>
             <strong>@Model.OrdersWithDeliveryPerson</strong>
         </article>
@@ -47,6 +51,7 @@
                 <option value="">Alle actieve statussen</option>
                 <option value="Nieuw" selected="@(Model.StatusFilter == "Nieuw")">Nieuw</option>
                 <option value="In behandeling" selected="@(Model.StatusFilter == "In behandeling")">In behandeling</option>
+                <option value="Gepickt" selected="@(Model.StatusFilter == "Gepickt")">Gepickt</option>
                 <option value="Doorgegeven aan bezorger" selected="@(Model.StatusFilter == "Doorgegeven aan bezorger")">Doorgegeven aan bezorger</option>
             </select>
         </div>
@@ -60,6 +65,13 @@
         <strong>Externe website endpoint</strong>
         <code>POST /api/orders/incoming</code>
         <span>JSON: customerName, customerAddress, externalReference en productIds.</span>
+    </div>
+
+    <div class="external-api-note">
+        <strong>Bezorgersapp endpoints</strong>
+        <code>GET /api/delivery/orders</code>
+        <code>POST /api/delivery/orders/{id}/claim</code>
+        <span>Claim JSON: deliveryPerson.</span>
     </div>
 
     @if (!Model.Orders.Any())
@@ -77,7 +89,7 @@
                             <span class="dashboard-label">Order</span>
                             <h2>#@order.Id</h2>
                         </div>
-                        <span class="badge @(order.Status == "Doorgegeven aan bezorger" ? "bg-success" : "bg-primary")">@order.Status</span>
+                        <span class="badge @(order.Status == "Doorgegeven aan bezorger" ? "bg-success" : order.Status == "Gepickt" ? "bg-warning text-dark" : "bg-primary")">@order.Status</span>
                     </div>
 
                     <dl class="active-order-details">
@@ -104,16 +116,29 @@
                         </dd>
                         <dt>Bezorger</dt>
                         <dd>@(string.IsNullOrWhiteSpace(order.DeliveryPerson) ? "Nog niet toegewezen" : order.DeliveryPerson)</dd>
+                        <dt>Gepickt op</dt>
+                        <dd>@(order.PickedAt.HasValue ? order.PickedAt.Value.ToString("dd-MM-yyyy HH:mm") : "Nog niet gepickt")</dd>
                     </dl>
 
-                    <form asp-action="AssignDelivery" method="post" class="delivery-form">
-                        <input type="hidden" name="OrderId" value="@order.Id" />
-                        <label for="delivery-@order.Id" class="form-label">Doorzetten naar bezorger</label>
-                        <div class="input-group">
-                            <input id="delivery-@order.Id" name="DeliveryPerson" class="form-control" value="@order.DeliveryPerson" placeholder="Naam bezorger" />
-                            <button type="submit" class="btn btn-primary">Doorzetten</button>
+                    @if (order.Status != "Gepickt" && order.Status != "Doorgegeven aan bezorger")
+                    {
+                        <form asp-action="Pick" method="post" class="delivery-form">
+                            <input type="hidden" name="id" value="@order.Id" />
+                            <button type="submit" class="btn btn-primary w-100">Order picken</button>
+                        </form>
+                    }
+                    else if (order.Status == "Gepickt")
+                    {
+                        <div class="alert alert-warning mb-0">
+                            Deze order staat klaar in de bezorgersapp.
                         </div>
-                    </form>
+                    }
+                    else
+                    {
+                        <div class="alert alert-success mb-0">
+                            Deze order is opgepakt door de bezorgersapp.
+                        </div>
+                    }
                 </article>
             }
         </div>

@@ -35,6 +35,10 @@
             <strong>@Model.IncomingOrders</strong>
         </article>
         <article class="dashboard-card dashboard-card-warning">
+            <span class="dashboard-label">Gepickt</span>
+            <strong>@Model.PickedOrders</strong>
+        </article>
+        <article class="dashboard-card">
             <span class="dashboard-label">Met bezorger</span>
             <strong>@Model.OrdersWithDeliveryPerson</strong>
         </article>
@@ -74,7 +78,7 @@
                                 <td>#@order.Id</td>
                                 <td>@order.Customer.Name</td>
                                 <td>
-                                    <span class="badge @(order.Status == "Doorgegeven aan bezorger" ? "bg-success" : "bg-primary")">
+                                    <span class="badge @(order.Status == "Doorgegeven aan bezorger" ? "bg-success" : order.Status == "Gepickt" ? "bg-warning text-dark" : "bg-primary")">
                                         @order.Status
                                     </span>
                                 </td>

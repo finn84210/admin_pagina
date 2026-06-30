@@ -12,6 +12,8 @@ namespace KE03_INTDEV_SE_2_Base.ViewModels
 
         public int IncomingOrders { get; set; }
 
+        public int PickedOrders { get; set; }
+
         public int OrdersWithDeliveryPerson { get; set; }
     }
 }
