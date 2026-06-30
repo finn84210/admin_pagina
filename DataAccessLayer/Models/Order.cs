@@ -34,6 +34,6 @@ namespace DataAccessLayer.Models
         public ICollection<Product> Products { get; } = new List<Product>();
 
         [NotMapped]
-        public bool IsActive => Status != "Afgerond" && Status != "Geannuleerd";
+        public bool IsActive => Status != "Afgerond" && Status != "Geannuleerd" && Status != "Geleverd";
     }
 }

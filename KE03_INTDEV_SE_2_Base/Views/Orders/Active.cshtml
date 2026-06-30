@@ -52,6 +52,8 @@
                 <option value="Nieuw" selected="@(Model.StatusFilter == "Nieuw")">Nieuw</option>
                 <option value="In behandeling" selected="@(Model.StatusFilter == "In behandeling")">In behandeling</option>
                 <option value="Gepickt" selected="@(Model.StatusFilter == "Gepickt")">Gepickt</option>
+                <option value="Nog te leveren" selected="@(Model.StatusFilter == "Nog te leveren")">Nog te leveren</option>
+                <option value="Onderweg" selected="@(Model.StatusFilter == "Onderweg")">Onderweg</option>
                 <option value="Doorgegeven aan bezorger" selected="@(Model.StatusFilter == "Doorgegeven aan bezorger")">Doorgegeven aan bezorger</option>
             </select>
         </div>
@@ -71,7 +73,8 @@
         <strong>Bezorgersapp endpoints</strong>
         <code>GET /api/delivery/orders</code>
         <code>POST /api/delivery/orders/{id}/claim</code>
-        <span>Claim JSON: deliveryPerson.</span>
+        <code>PATCH /api/delivery/orders/{id}/status</code>
+        <span>JSON: deliveryPerson voor claim, status voor updates.</span>
     </div>
 
     @if (!Model.Orders.Any())

@@ -85,7 +85,7 @@ namespace KE03_INTDEV_SE_2_Base.Controllers
             var ordersQuery = _context.Orders
                 .Include(order => order.Customer)
                 .Include(order => order.Products)
-                .Where(order => order.Status != "Afgerond" && order.Status != "Geannuleerd")
+                .Where(order => order.Status != "Afgerond" && order.Status != "Geannuleerd" && order.Status != "Geleverd")
                 .AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(statusFilter))
@@ -94,7 +94,7 @@ namespace KE03_INTDEV_SE_2_Base.Controllers
             }
 
             var allActiveOrders = await _context.Orders
-                .Where(order => order.Status != "Afgerond" && order.Status != "Geannuleerd")
+                .Where(order => order.Status != "Afgerond" && order.Status != "Geannuleerd" && order.Status != "Geleverd")
                 .ToListAsync();
 
             var orders = await ordersQuery
@@ -231,6 +231,43 @@ namespace KE03_INTDEV_SE_2_Base.Controllers
 
             order.DeliveryPerson = request.DeliveryPerson.Trim();
             order.Status = "Doorgegeven aan bezorger";
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                order.Id,
+                order.Status,
+                order.DeliveryPerson,
+                order.PickedAt,
+                order.SentToDeliveryAt
+            });
+        }
+
+        [HttpPatch]
+        [Route("api/delivery/orders/{id:int}/status")]
+        public async Task<IActionResult> UpdateDeliveryStatus(int id, [FromBody] DeliveryStatusUpdateRequest? request)
+        {
+            if (request == null || !ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var allowedStatuses = new[] { "Nog te leveren", "Onderweg", "Geleverd" };
+
+            if (!allowedStatuses.Contains(request.Status))
+            {
+                return BadRequest(new { message = "Deze bezorgstatus is niet geldig." });
+            }
+
+            var order = await _context.Orders.FindAsync(id);
+
+            if (order == null)
+            {
+                return NotFound();
+            }
+
+            order.Status = request.Status;
 
             await _context.SaveChangesAsync();
 

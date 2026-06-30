@@ -24,7 +24,7 @@ namespace KE03_INTDEV_SE_2_Base.Controllers
             var activeOrders = await _context.Orders
                 .Include(order => order.Customer)
                 .Include(order => order.Products)
-                .Where(order => order.Status != "Afgerond" && order.Status != "Geannuleerd")
+                .Where(order => order.Status != "Afgerond" && order.Status != "Geannuleerd" && order.Status != "Geleverd")
                 .OrderBy(order => order.SentToDeliveryAt.HasValue)
                 .ThenByDescending(order => order.OrderDate)
                 .ToListAsync();
