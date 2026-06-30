@@ -1,3 +1,5 @@
+@model KE03_INTDEV_SE_2_Base.ViewModels.HomeOrderOverviewViewModel
+
 @{
     ViewData["Title"] = "Matrix Inc. Back-office";
 }
@@ -12,23 +14,87 @@
         </p>
         <div class="home-actions">
             <a asp-controller="Admin" asp-action="Index" class="btn btn-primary btn-lg">Open dashboard</a>
-            <a asp-controller="Product" asp-action="Index" class="btn btn-outline-primary btn-lg">Productbeheer</a>
+            <a asp-controller="Orders" asp-action="Active" class="btn btn-outline-primary btn-lg">Actieve orders</a>
         </div>
     </div>
     <div class="home-status-panel" aria-label="Back-office functies">
         <div>
-            <span>Producten</span>
-            <strong>CRUD</strong>
+            <span>Actieve orders</span>
+            <strong>@Model.ActiveOrders</strong>
         </div>
         <div>
-            <span>Orders</span>
-            <strong>Actief & historie</strong>
+            <span>Belangrijk</span>
+            <strong>@Model.ImportantOrders</strong>
         </div>
         <div>
-            <span>Voorraad</span>
-            <strong>Signalering</strong>
+            <span>Onderweg</span>
+            <strong>@Model.OrdersOnTheWay</strong>
         </div>
     </div>
+</section>
+
+<section class="home-section">
+    <div class="home-section-heading">
+        <h2>Orders in beeld</h2>
+        <p>Snelle status van orders waar vandaag aandacht voor nodig is.</p>
+    </div>
+
+    <div class="dashboard-grid home-order-stats">
+        <article class="dashboard-card dashboard-card-warning">
+            <span class="dashboard-label">Belangrijke orders</span>
+            <strong>@Model.ImportantOrders</strong>
+        </article>
+        <article class="dashboard-card">
+            <span class="dashboard-label">Nieuwe orders</span>
+            <strong>@Model.NewOrders</strong>
+        </article>
+        <article class="dashboard-card">
+            <span class="dashboard-label">Gepickt</span>
+            <strong>@Model.PickedOrders</strong>
+        </article>
+        <article class="dashboard-card">
+            <span class="dashboard-label">Onderweg</span>
+            <strong>@Model.OrdersOnTheWay</strong>
+        </article>
+    </div>
+</section>
+
+<section class="home-section">
+    <div class="admin-section-header">
+        <div>
+            <h2>Belangrijke orders</h2>
+            <p>Orders die nog actie nodig hebben of al in de bezorgflow zitten.</p>
+        </div>
+        <div class="admin-actions">
+            <a asp-controller="Orders" asp-action="Active" class="btn btn-primary">Alles bekijken</a>
+            <a asp-controller="Orders" asp-action="Index" class="btn btn-outline-secondary">Orderhistorie</a>
+        </div>
+    </div>
+
+    @if (!Model.ImportantOrderList.Any())
+    {
+        <div class="alert alert-success">Er zijn geen belangrijke actieve orders.</div>
+    }
+    else
+    {
+        <div class="home-important-orders">
+            @foreach (var order in Model.ImportantOrderList)
+            {
+                <article class="home-important-order">
+                    <div>
+                        <span class="home-card-kicker">Order #@order.Id</span>
+                        <strong>@order.Customer.Name</strong>
+                        <p>@order.Customer.Address</p>
+                    </div>
+                    <div class="home-order-meta">
+                        <span class="badge @(order.Status == "Onderweg" ? "bg-info text-dark" : order.Status == "Gepickt" ? "bg-warning text-dark" : "bg-primary")">@order.Status</span>
+                        <span>@order.Products.Count producten</span>
+                        <span>@order.OrderDate.ToString("dd-MM-yyyy HH:mm")</span>
+                    </div>
+                </article>
+            }
+        </div>
+    }
 </section>
 
 <section class="home-section">
@@ -74,9 +140,9 @@
     <div>
         <h2>Gebruikelijke workflow</h2>
         <ol>
-            <li>Start op het admin dashboard voor een snelle statuscontrole.</li>
-            <li>Ga naar productbeheer om producten of voorraad bij te werken.</li>
-            <li>Controleer actieve orders en pick ze voor de bezorgersapp.</li>
+            <li>Controleer bovenaan of er belangrijke orders zijn.</li>
+            <li>Open actieve orders om nieuwe orders te picken.</li>
+            <li>Volg onderweg en geleverd via de status uit de bezorgerapp.</li>
         </ol>
     </div>
     <a asp-controller="Product" asp-action="Create" class="btn btn-success">Nieuw product toevoegen</a>
